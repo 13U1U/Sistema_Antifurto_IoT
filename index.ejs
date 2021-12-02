@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>web sockets</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>Using socket.io</h1>
+            <p>essa pagina faz update com um socket.io</p>
+            <button id="clicked">click me</button>
+            <div id="update"></div>
+        </div>
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script>
+            var socket = io();
+            var button = document.getElementById('clicked');
+            button.onclick = function(e){
+                socket.emit('clicked message', 'clicked');
+            }
+            socket.on('clicked message', function(msg){
+                document.getElementById('updates').innerHTML = msg;
+            })
+        </script>
+    </body>
+</html>
